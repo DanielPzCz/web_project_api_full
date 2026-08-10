@@ -1,0 +1,51 @@
+.popup__content_content_tooltip {
+  min-height: 330px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 36px;
+}
+
+.tooltip__icon {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.tooltip__message {
+  max-width: 358px;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29px;
+  text-align: center;
+  color: #000;
+  margin: 32px 0 0;
+}
+
+@media screen and (max-width: 544px) {
+  .popup__content_content_tooltip {
+    min-height: 232px;
+    padding: 50px 18px;
+  }
+
+  .tooltip__icon {
+    width: 90px;
+    height: 90px;
+  }
+
+  .tooltip__message {
+    font-size: 18px;
+    line-height: 22px;
+    margin-top: 24px;
+  }
+
+  /* En móvil el botón de cerrar se centra sobre la ventana en lugar de
+     quedarse pegado a la esquina derecha. */
+  .popup__content_content_tooltip .popup__close {
+    left: 50%;
+    right: auto;
+    top: -40px;
+    transform: translateX(-50%);
+  }
+}

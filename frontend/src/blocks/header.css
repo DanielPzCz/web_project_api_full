@@ -1,0 +1,114 @@
+.header {
+  min-height: 120px;
+  font-family: "Inter", Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+}
+
+.header__logo {
+  width: 173px;
+  height: 33px;
+  object-fit: contain;
+}
+
+.header__link {
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.header__link:hover {
+  opacity: 0.6;
+}
+
+.header__account {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header__email {
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
+  margin: 0;
+}
+
+.header__signout {
+  font-family: inherit;
+  font-size: 18px;
+  line-height: 22px;
+  color: #a9a9a9;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.header__signout:hover {
+  opacity: 0.6;
+}
+
+.header__menu-button {
+  display: none;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.header__menu-icon {
+  display: block;
+  margin: 0 auto;
+}
+
+/* El menú móvil se renderiza fuera de <header>, así que no hereda su
+   tipografía y necesita declararla por su cuenta. */
+.header__menu {
+  font-family: "Inter", Arial, sans-serif;
+  display: none;
+}
+
+@media screen and (max-width: 544px) {
+  .header {
+    min-height: 85px;
+  }
+
+  .header__logo {
+    width: 126px;
+    height: 24px;
+    margin: 0 0 0 7px;
+  }
+
+  .header__link {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .header__account {
+    display: none;
+  }
+
+  .header__menu-button {
+    display: block;
+  }
+
+  .header__menu {
+    min-height: 128px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  }
+
+  .header_menu_opened {
+    border-bottom: none;
+  }
+}

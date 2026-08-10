@@ -1,0 +1,33 @@
+{
+  "name": "web_project_around_express",
+  "version": "1.0.0",
+  "description": "Servidor backend con Express",
+  "homepage": "https://github.com/DanielPzCz/web_project_around_express#readme",
+  "bugs": {
+    "url": "https://github.com/DanielPzCz/web_project_around_express/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielPzCz/web_project_around_express.git"
+  },
+  "license": "ISC",
+  "author": "Daniel",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "lint": "npx eslint ."
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^9.7.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.29.1",
+    "nodemon": "^3.1.14"
+  }
+}
