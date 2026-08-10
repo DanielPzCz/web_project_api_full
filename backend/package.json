@@ -1,15 +1,7 @@
 {
-  "name": "web_project_around_express",
+  "name": "web_project_api_full_backend",
   "version": "1.0.0",
-  "description": "Servidor backend con Express",
-  "homepage": "https://github.com/DanielPzCz/web_project_around_express#readme",
-  "bugs": {
-    "url": "https://github.com/DanielPzCz/web_project_around_express/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DanielPzCz/web_project_around_express.git"
-  },
+  "description": "API de Around The U.S. con autenticación JWT",
   "license": "ISC",
   "author": "Daniel",
   "type": "commonjs",
@@ -20,8 +12,11 @@
     "lint": "npx eslint ."
   },
   "dependencies": {
-    "express": "^4.19.2",
-    "mongoose": "^9.7.4"
+    "bcryptjs": "^3.0.3",
+    "express": "^4.22.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.9.1",
+    "validator": "^13.15.35"
   },
   "devDependencies": {
     "eslint": "^8.56.0",

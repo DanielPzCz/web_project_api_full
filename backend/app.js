@@ -1,31 +1,36 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const NOT_FOUND = 404;
-const ADDRESS_NOT_FOUND_MESSAGE = 'Requested resource not found';
+const { login, createUser } = require('./controllers/users');
+const auth = require('./middlewares/auth');
+const errorHandler = require('./middlewares/errorHandler');
+const NotFoundError = require('./errors/NotFoundError');
+const { PORT, DB_URL } = require('./utils/config');
 
-const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/aroundb');
+mongoose.connect(DB_URL);
 
-app.use((req, res, next) => {
-  req.user = {
-    _id: '6a58260663f388da8152d8f6',
-  };
+// Rutas públicas: son las únicas que quedan fuera de la autorización.
+app.post('/signin', login);
+app.post('/signup', createUser);
 
-  next();
-});
+// A partir de aquí, toda petición necesita un JWT válido.
+app.use(auth);
 
 app.use('/users', require('./routes/users'));
 app.use('/cards', require('./routes/cards'));
 
-app.use((req, res) => {
-  res.status(NOT_FOUND).send({ message: ADDRESS_NOT_FOUND_MESSAGE });
+app.use((req, res, next) => {
+  next(new NotFoundError('Requested resource not found'));
 });
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+module.exports = app;

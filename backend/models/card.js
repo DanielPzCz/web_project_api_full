@@ -1,26 +1,24 @@
 const mongoose = require('mongoose');
-
-const urlRegex =
-  /^https?:\/\/(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+[a-zA-Z0-9-._~:/?%#[\]@!$&'()*+,;=]*#?$/;
+const validator = require('validator');
 
 const cardSchema = new mongoose.Schema({
   name: {
     type: String,
     minlength: 2,
     maxlength: 30,
-    required: true,
+    required: [true, 'Card name is required'],
   },
   link: {
     type: String,
+    required: [true, 'Card link is required'],
     validate: {
-      validator: (v) => urlRegex.test(v),
-      message: (props) => `${props.value} is not a valid URL!`,
+      validator: (value) => validator.isURL(value),
+      message: (props) => `${props.value} is not a valid URL`,
     },
-    required: [true, 'User avatar is required'],
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'user',
     required: true,
   },
   likes: {
