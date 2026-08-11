@@ -1,22 +1,4 @@
 const API_URL = "https://around-api.es.tripleten-services.com/v1";
-
-// Token de grupo del proyecto 14.
-//
-// El brief pide enviar el JWT del usuario como `Authorization: Bearer {token}`,
-// pero esta API no admite ese esquema. Probado contra GET /cards:
-//
-//   authorization: <token de grupo>           -> 200 OK
-//   authorization: Bearer <token de grupo>    -> 403 Forbidden
-//   authorization: Bearer <JWT del usuario>   -> 403 Forbidden
-//
-// Es decir, rechaza tanto el JWT (lo emite se-register-api, otro servicio que
-// no comparte la clave de firma) como el propio prefijo `Bearer`. Solo acepta
-// el token de grupo en crudo.
-//
-// El esquema Bearer sí está implementado contra el servidor que lo entiende,
-// en checkToken() de auth.js. En el sprint 18, cuando la funcionalidad
-// principal pase a mi backend de Express, este encabezado se sustituye por el
-// JWT y las dos APIs quedan unificadas.
 const API_TOKEN = "b807b23d-7b3a-4447-befc-7873398bb520";
 
 class Api {

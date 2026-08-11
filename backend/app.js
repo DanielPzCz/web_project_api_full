@@ -1,23 +1,37 @@
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errorHandler');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { validateSignUp, validateSignIn } = require('./middlewares/validators');
 const NotFoundError = require('./errors/NotFoundError');
 const { PORT, DB_URL } = require('./utils/config');
 
 const app = express();
 
+app.use(cors());
+app.options('*', cors());
+
 app.use(express.json());
 
 mongoose.connect(DB_URL);
 
-// Rutas públicas: son las únicas que quedan fuera de la autorización.
-app.post('/signin', login);
-app.post('/signup', createUser);
+app.use(requestLogger);
 
-// A partir de aquí, toda petición necesita un JWT válido.
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('El servidor va a caer');
+  }, 0);
+});
+
+app.post('/signin', validateSignIn, login);
+app.post('/signup', validateSignUp, createUser);
+
 app.use(auth);
 
 app.use('/users', require('./routes/users'));
@@ -26,6 +40,8 @@ app.use('/cards', require('./routes/cards'));
 app.use((req, res, next) => {
   next(new NotFoundError('Requested resource not found'));
 });
+
+app.use(errorLogger);
 
 app.use(errorHandler);
 

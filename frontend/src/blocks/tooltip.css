@@ -40,8 +40,6 @@
     margin-top: 24px;
   }
 
-  /* En móvil el botón de cerrar se centra sobre la ventana en lugar de
-     quedarse pegado a la esquina derecha. */
   .popup__content_content_tooltip .popup__close {
     left: 50%;
     right: auto;

@@ -7,12 +7,6 @@ export default function EditProfile() {
 
   const [name, setName] = useState(currentUser.name || "");
   const [description, setDescription] = useState(currentUser.about || "");
-
-  // Si el popup se abre antes de que lleguen los datos del servidor, los
-  // campos nacerían vacíos. Al detectar que currentUser cambió, los
-  // rellenamos durante el render: es el patrón que recomienda la
-  // documentación de React para ajustar estado cuando cambia una entrada,
-  // y evita el re-render extra que provocaría hacerlo en un useEffect.
   const [renderedUser, setRenderedUser] = useState(currentUser);
 
   if (renderedUser !== currentUser) {

@@ -1,12 +1,21 @@
+const { isCelebrateError } = require('celebrate');
+
 const DEFAULT_ERROR_MESSAGE = 'An error has occurred on the server';
+const BAD_REQUEST = 400;
+const INTERNAL_SERVER_ERROR = 500;
 
-// Middleware de manejo centralizado de errores. Express lo reconoce como tal
-// porque declara cuatro parámetros, así que `next` debe seguir presente aunque
-// no se use (ver la excepción de no-unused-vars en .eslintrc).
 module.exports = (err, req, res, next) => {
-  const { statusCode = 500, message } = err;
+  if (isCelebrateError(err)) {
+    const detail = err.details.get('body') || err.details.get('params') || err.details.get('query');
 
-  res.status(statusCode).send({
-    message: statusCode === 500 ? DEFAULT_ERROR_MESSAGE : message,
+    return res.status(BAD_REQUEST).send({
+      message: detail ? detail.message : 'Validation failed',
+    });
+  }
+
+  const { statusCode = INTERNAL_SERVER_ERROR, message } = err;
+
+  return res.status(statusCode).send({
+    message: statusCode === INTERNAL_SERVER_ERROR ? DEFAULT_ERROR_MESSAGE : message,
   });
 };
