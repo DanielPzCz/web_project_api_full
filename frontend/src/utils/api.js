@@ -1,5 +1,4 @@
-const API_URL = "https://around-api.es.tripleten-services.com/v1";
-const API_TOKEN = "b807b23d-7b3a-4447-befc-7873398bb520";
+import { BASE_URL } from "./config.js";
 
 class Api {
   constructor({ baseUrl, headers }) {
@@ -8,22 +7,19 @@ class Api {
   }
 
   _getHeaders() {
-    return { ...this._headers };
+    const token = localStorage.getItem("jwt") ?? "";
+
+    return {
+      ...this._headers,
+      Authorization: `Bearer ${token}`,
+    };
   }
 
   _checkResponse(response) {
-    if (!response.ok) {
-      return Promise.reject(`Error ${response.status}`);
+    if (response.ok) {
+      return response.json();
     }
-    return response.json().then((payload) => {
-      const isWrapped =
-        payload !== null &&
-        typeof payload === "object" &&
-        !Array.isArray(payload) &&
-        Object.keys(payload).length === 1 &&
-        "data" in payload;
-      return isWrapped ? payload.data : payload;
-    });
+    return Promise.reject(`Error ${response.status}`);
   }
 
   getUserInfo() {
@@ -80,9 +76,9 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: API_URL,
+  baseUrl: BASE_URL,
   headers: {
-    authorization: API_TOKEN,
+    Accept: "application/json",
     "Content-Type": "application/json",
   },
 });

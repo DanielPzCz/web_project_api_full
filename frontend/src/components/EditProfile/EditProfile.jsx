@@ -7,6 +7,7 @@ export default function EditProfile() {
 
   const [name, setName] = useState(currentUser.name || "");
   const [description, setDescription] = useState(currentUser.about || "");
+
   const [renderedUser, setRenderedUser] = useState(currentUser);
 
   if (renderedUser !== currentUser) {
@@ -53,7 +54,7 @@ export default function EditProfile() {
         placeholder="Nombre"
         type="text"
         minLength={2}
-        maxLength={40}
+        maxLength={30}
         required
         value={name}
         onChange={handleNameChange}
@@ -74,7 +75,7 @@ export default function EditProfile() {
         placeholder="Acerca de mí"
         type="text"
         minLength={2}
-        maxLength={200}
+        maxLength={30}
         required
         value={description}
         onChange={handleDescriptionChange}

@@ -1,4 +1,4 @@
-export const BASE_URL = "https://se-register-api.en.tripleten-services.com/v1";
+import { BASE_URL } from "./config.js";
 
 function checkResponse(response) {
   if (response.ok) {

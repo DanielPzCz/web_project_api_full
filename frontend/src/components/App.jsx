@@ -36,7 +36,7 @@ function App() {
     auth
       .checkToken(token)
       .then((userData) => {
-        setEmail(userData.data.email);
+        setEmail(userData.email);
         setLoggedIn(true);
       })
       .catch((error) => {

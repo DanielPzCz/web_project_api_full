@@ -60,7 +60,7 @@ export default function Login(props) {
           id="login-password"
           type="password"
           placeholder="Contraseña"
-          minLength={4}
+          minLength={8}
           required
           value={password}
           onChange={handlePasswordChange}
