@@ -6,7 +6,8 @@ dist
 dist-ssr
 
 # Variables de entorno
-.env
+.env*
+!.env.production
 *.local
 
 # Registros
