@@ -29,6 +29,20 @@ jill.valentine@example.com
 albert.wesker@example.com
 ```
 
+## La aplicación en uso
+
+![Crear una tarjeta desde el móvil](docs/capturas/movil-crear-tarjeta.gif)
+
+En un teléfono: el diseño se adapta a una sola columna y desde el botón de añadir
+se crea una tarjeta nueva, que aparece al principio de la galería sin recargar la
+página.
+
+![Registro, inicio de sesión y edición del perfil](docs/capturas/registro-y-perfil.gif)
+
+En escritorio, el recorrido completo de una cuenta nueva: intentar entrar con un
+correo que no existe devuelve un error, se registra ese mismo correo, se inicia
+sesión con él, y ya dentro se editan el nombre, la descripción y el avatar.
+
 ## Funcionalidades
 
 - Registro e inicio de sesión con correo electrónico y contraseña
